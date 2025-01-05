@@ -1,5 +1,6 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import FlickeringGrid from "@/components/ui/flickering-grid";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,8 +21,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen relative`}
       >
+        <div className="absolute inset-0">
+          <FlickeringGrid className="w-full h-full -z-10" />
+        </div>
         {children}
       </body>
     </html>
