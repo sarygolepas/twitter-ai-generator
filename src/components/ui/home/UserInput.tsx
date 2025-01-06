@@ -25,8 +25,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import MetaIcon from "../icons/Meta";
-import MistralIcon from "../icons/Mistral";
+import MetaIcon from "../../icons/Meta";
+import MistralIcon from "../../icons/Mistral";
+import { Slider } from "@/components/ui/slider";
+import { Tooltip, TooltipContent, TooltipTrigger } from "../tooltip";
+import { Info } from "lucide-react";
 
 const formSchema = z.object({
   model: z.string().min(1, "Model is required!"),
@@ -83,7 +86,7 @@ function UserInput() {
           onSubmit={form.handleSubmit(onSubmit)}
           className="w-full items-start gap-6"
         >
-          <fieldset className="gap-6 rounded-[8px] border p-4 bg-background/10 background-blur-s">
+          <fieldset className="flex flex-col gap-8 rounded-[8px] border p-4 bg-background/10 background-blur-s">
             <legend>Settings</legend>
 
             <FormField
@@ -149,6 +152,47 @@ function UserInput() {
                 </FormItem>
               )}
             />
+            <FormField
+              control={form.control}
+              name="temperature"
+              render={({ field: { value, onChange } }) => (
+                <FormItem>
+                  <FormLabel className="flex items-center justify-between pb-2">
+                    <div className="flex items-center justify-center">
+                      <span>Creativity</span>
+                      <Tooltip>
+                        <TooltipTrigger>
+                          <Info className="w-3 h-3 ml-1 cursor-pointer" />
+                        </TooltipTrigger>
+                        <TooltipContent
+                          sideOffset={5}
+                          collisionPadding={20}
+                          className="max-w-sm"
+                        >
+                          <p>
+                            A higher setting produces more creative and
+                            surprising bios, while a lower setting sticks to
+                            more predictable and conventional styles
+                          </p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </div>
+                    <span>{value}</span>
+                  </FormLabel>
+                  <FormControl>
+                    <Slider
+                      defaultValue={[1]}
+                      min={0}
+                      max={2}
+                      step={0.1}
+                      onValueChange={(val) => onChange(val[0])}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
             <div className="mt-5 w-full">
               <Button type="submit" className="w-full">
                 Submit
