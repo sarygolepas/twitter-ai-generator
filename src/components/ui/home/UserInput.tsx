@@ -69,24 +69,27 @@ function UserInput() {
   return (
     <div className="flex flex-col items-start gap-8">
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-          <FormField
-            control={form.control}
-            name="username"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Username</FormLabel>
-                <FormControl>
-                  <Input placeholder="shadcn" {...field} />
-                </FormControl>
-                <FormDescription>
-                  This is your public display name.
-                </FormDescription>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <Button type="submit">Submit</Button>
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="w-full items-start gap-6"
+        >
+          <fieldset className="grid gap-6 rounded-[8px] border p-4 bg-background/10 background-blur-sm">
+            <legend>Settings</legend>
+            <FormField
+              control={form.control}
+              name="model"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Model</FormLabel>
+                  <FormControl>
+                    <Input placeholder="shadcn" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <Button type="submit">Submit</Button>
+          </fieldset>
         </form>
       </Form>
     </div>
