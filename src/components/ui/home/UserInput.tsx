@@ -67,14 +67,15 @@ function UserInput() {
   };
 
   return (
-    <div className="flex flex-col items-start gap-8">
+    <div className="flex flex-col items-start gap-8 bg-white">
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
           className="w-full items-start gap-6"
         >
-          <fieldset className="grid gap-6 rounded-[8px] border p-4 bg-background/10 background-blur-sm">
+          <fieldset className="gap-6 rounded-[8px] border p-4 bg-background/10 background-blur-s">
             <legend>Settings</legend>
+
             <FormField
               control={form.control}
               name="model"
@@ -88,7 +89,11 @@ function UserInput() {
                 </FormItem>
               )}
             />
-            <Button type="submit">Submit</Button>
+            <div className="mt-5 w-full">
+              <Button type="submit" className="w-full">
+                Submit
+              </Button>
+            </div>
           </fieldset>
         </form>
       </Form>

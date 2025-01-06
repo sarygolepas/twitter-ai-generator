@@ -19,7 +19,7 @@ export default function Home() {
           </Link>
         </div>
       </div>
-      <div className="text-center z-10">
+      <div className="text-center z-10 mb-8">
         <h1 className="font-extrabold text-7xl lg:w-[90%] mx-auto mb-8">
           Generate your twitter bio
         </h1>
@@ -28,9 +28,13 @@ export default function Home() {
           captures who you are.
         </p>
       </div>
-      <div className="z-10 flex gap-10 px-10 justify-between w-full">
-        <UserInput />
-        <Output />
+      <div className="z-10 flex gap-10 justify-between w-full">
+        <div className="flex-1">
+          <UserInput />
+        </div>
+        <div className="flex-1">
+          <Output />
+        </div>
       </div>
     </main>
   );

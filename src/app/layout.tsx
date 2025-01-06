@@ -24,7 +24,10 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen relative`}
       >
         <div className="absolute inset-0">
-          <FlickeringGrid className="w-full h-full -z-10 opacity-10" />
+          <FlickeringGrid
+            className="w-full h-full -z-10 opacity-80"
+            color="rgb(235, 170, 247)"
+          />
         </div>
         {children}
       </body>
