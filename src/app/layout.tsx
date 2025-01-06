@@ -25,7 +25,7 @@ export default function RootLayout({ children }) {
       >
         <div className="absolute inset-0">
           <FlickeringGrid
-            className="w-full h-full -z-10 opacity-80"
+            className="w-full h-full -z-10"
             color="rgb(235, 170, 247)"
           />
         </div>

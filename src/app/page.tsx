@@ -1,6 +1,6 @@
 import AnimatedShinyText from "@/components/ui/animated-shiny-text";
-import UserInput from "@/components/ui/home/UserInput";
-import Output from "@/components/ui/home/Output";
+import UserInput from "@/components/home/UserInput";
+import Output from "@/components/home/Output";
 import { ChevronRight, Star } from "lucide-react";
 import Link from "next/link";
 
