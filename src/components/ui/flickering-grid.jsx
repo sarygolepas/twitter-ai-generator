@@ -162,7 +162,7 @@ const FlickeringGrid = ({
     <div ref={containerRef} className={`w-full h-full ${className}`}>
       <canvas
         ref={canvasRef}
-        className="pointer-events-none"
+        className="pointer-events-none fixed"
         style={{
           width: canvasSize.width,
           height: canvasSize.height,
