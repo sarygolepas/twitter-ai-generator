@@ -194,10 +194,13 @@ function UserInput() {
             />
 
             <div className="mt-5 w-full">
-              <Button type="submit" className="w-full">
+              {/* <Button type="submit" className="w-full">
                 Submit
-              </Button>
+              </Button> */}
             </div>
+          </fieldset>
+          <fieldset className="flex flex-col gap-8 rounded-[8px] border p-4 bg-background/10 background-blur-s">
+            <legend>User Input</legend>
           </fieldset>
         </form>
       </Form>
