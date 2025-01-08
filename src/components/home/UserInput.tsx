@@ -31,6 +31,7 @@ import { Slider } from "@/components/ui/slider";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 import { Info } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
+import { Switch } from "@/components/ui/switch";
 
 const formSchema = z.object({
   model: z.string().min(1, "Model is required!"),
@@ -81,13 +82,14 @@ function UserInput() {
   };
 
   return (
-    <div className="flex flex-col items-start gap-8 bg-white">
+    <div className="flex flex-col items-start gap-8 ">
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
           className="w-full items-start gap-6"
         >
-          <fieldset className="flex flex-col gap-8 rounded-[8px] border p-4 bg-background/10 background-blur-s">
+          {/* SETTINGS */}
+          <fieldset className="flex flex-col gap-6 rounded-[8px] border px-4 pt-4 pb-6 bg-background/10 background-blur-s bg-white mb-6">
             <legend className="ml-1 px-1 text-sm font-medium">Settings</legend>
 
             <FormField
@@ -193,14 +195,10 @@ function UserInput() {
                 </FormItem>
               )}
             />
-
-            <div className="mt-5 w-full">
-              {/* <Button type="submit" className="w-full">
-                Submit
-              </Button> */}
-            </div>
           </fieldset>
-          <fieldset className="flex flex-col gap-8 rounded-[8px] border p-4 bg-background/10 background-blur-s">
+
+          {/* USER INPUT */}
+          <fieldset className="flex flex-col gap-6 rounded-[8px] border px-4 pt-4 pb-5 bg-background/10 background-blur-s bg-white mb-6">
             <legend className="ml-1 px-1 text-sm font-medium">
               User Input
             </legend>
@@ -209,77 +207,107 @@ function UserInput() {
               name="content"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="flex items-center justify-between pb-2">
+                  <FormLabel className="flex items-center justify-between pb-1">
                     About Yourself
                   </FormLabel>
                   <FormControl>
                     <Textarea
                       {...field}
                       placeholder="Add your old twitter bio or write few sentences about yourself"
-                      className="min-h-[10rem]"
+                      className="min-h-[5rem]"
                     />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
+            <div className="flex gap-4">
+              <div className="flex-1">
+                <FormField
+                  control={form.control}
+                  name="type"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="flex items-center justify-between pb-1">
+                        Type
+                      </FormLabel>
+                      <Select
+                        onValueChange={field.onChange}
+                        defaultValue={field.value}
+                      >
+                        <FormControl>
+                          <SelectTrigger>
+                            <SelectValue placeholder="Select type" />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          <SelectItem value="personal">Personal</SelectItem>
+                          <SelectItem value="brand">Brand</SelectItem>
+                        </SelectContent>
+                      </Select>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+              <div className="flex-1">
+                <FormField
+                  control={form.control}
+                  name="tone"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="flex items-center justify-between pb-1">
+                        Tone
+                      </FormLabel>
+                      <Select
+                        onValueChange={field.onChange}
+                        defaultValue={field.value}
+                      >
+                        <FormControl>
+                          <SelectTrigger>
+                            <SelectValue placeholder="Select tone" />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          <SelectItem value="professional">
+                            Professional
+                          </SelectItem>
+                          <SelectItem value="casual">Casual</SelectItem>
+                          <SelectItem value="sarcastic">Sarcastic</SelectItem>
+                          <SelectItem value="funny">Funny</SelectItem>
+                          <SelectItem value="passionate">Passionate</SelectItem>
+                          <SelectItem value="thoughful">Thoughtful</SelectItem>
+                        </SelectContent>
+                      </Select>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+            </div>
             <FormField
               control={form.control}
-              name="type"
+              name="emojis"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="flex items-center justify-between pb-2">
-                    Type
-                  </FormLabel>
-                  <Select
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                  >
-                    <FormControl>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select type" />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      <SelectItem value="personal">Personal</SelectItem>
-                      <SelectItem value="brand">Brand</SelectItem>
-                    </SelectContent>
-                  </Select>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="tone"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="flex items-center justify-between pb-2">
-                    Tone
-                  </FormLabel>
-                  <Select
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                  >
-                    <FormControl>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select tone" />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      <SelectItem value="professional">Professional</SelectItem>
-                      <SelectItem value="casual">Casual</SelectItem>
-                      <SelectItem value="sarcastic">Sarcastic</SelectItem>
-                      <SelectItem value="funny">Funny</SelectItem>
-                      <SelectItem value="passionate">Passionate</SelectItem>
-                      <SelectItem value="thoughful">Thoughtful</SelectItem>
-                    </SelectContent>
-                  </Select>
+                  <div className="flex gap-2 items-center">
+                    <FormLabel className=" text-sm flex items-center justify-between pb-1">
+                      Add Emojis
+                    </FormLabel>
+                    <Switch
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
+                      className="!my-0"
+                    />
+                  </div>
                   <FormMessage />
                 </FormItem>
               )}
             />
           </fieldset>
+          <Button type="submit" className="w-full rounded">
+            Generate
+          </Button>
         </form>
       </Form>
     </div>
@@ -287,3 +315,9 @@ function UserInput() {
 }
 
 export default UserInput;
+
+{
+  /* <div className="mt-5 w-full">
+
+</div> */
+}
