@@ -11,7 +11,7 @@ function Output() {
   const { output, loading } = useContext(BioContext);
 
   return (
-    <div className="flex min-h-[50vh] mt-2 flex-col rounded-xl bg-muted/50 backdrop-blur-sm overflow-hidden border border-primary/5">
+    <div className="flex h-[87.5%] mt-2 flex-col rounded-xl bg-muted/50 backdrop-blur-sm overflow-hidden border border-primary/5">
       {loading && (
         <BorderBeam
           size={1200}
@@ -26,12 +26,12 @@ function Output() {
       {loading ? (
         <Skeleton className="w-full h-full" />
       ) : (
-        <ul className="flex flex-col items-start justify-start space-y-12 p-16">
+        <ul className="flex flex-col items-start justify-start space-y-12 py-12 md:px-4 xl:p-16">
           {output?.data.map((data, index) => {
             return (
               <li
                 key={index}
-                className="w-full text-base border border-primary/20 rounded-md p-4 relative bg-background rounded-br-none"
+                className="w-full border border-primary/20 rounded-md p-4 relative bg-background rounded-br-none md:text-sm lg:text-base"
               >
                 {data.bio}
                 <span className="absolute top-[99%] right-0">
