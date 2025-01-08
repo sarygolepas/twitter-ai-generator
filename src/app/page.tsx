@@ -3,6 +3,7 @@ import UserInput from "@/components/home/UserInput";
 import Output from "@/components/home/Output";
 import { ChevronRight, Star } from "lucide-react";
 import Link from "next/link";
+import { BioProvider } from "@/context/BioContext";
 
 export default function Home() {
   return (
@@ -29,12 +30,14 @@ export default function Home() {
         </p>
       </div>
       <div className="z-10 flex gap-10 justify-between w-full">
-        <div className="flex-1">
-          <UserInput />
-        </div>
-        <div className="flex-1">
-          <Output />
-        </div>
+        <BioProvider>
+          <div className="flex-1">
+            <UserInput />
+          </div>
+          <div className="flex-1">
+            <Output />
+          </div>
+        </BioProvider>
       </div>
     </main>
   );

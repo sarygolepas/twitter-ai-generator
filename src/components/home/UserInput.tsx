@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -29,10 +29,11 @@ import MetaIcon from "../icons/Meta";
 import MistralIcon from "../icons/Mistral";
 import { Slider } from "@/components/ui/slider";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
-import { Info } from "lucide-react";
+import { Info, Loader2 } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
 import { Switch } from "@/components/ui/switch";
 import { generateBio } from "@/app/action";
+import { BioContext } from "@/context/BioContext";
 
 const formSchema = z.object({
   model: z.string().min(1, "Model is required!"),
@@ -78,8 +79,11 @@ function UserInput() {
     },
   });
 
+  const { setOutput, setLoading, loading } = useContext(BioContext);
+
   const onSubmit: SubmitHandler<FormValues> = async (values) => {
-    console.log(values);
+    // console.log(values);
+    setLoading(true);
 
     const userInputValues = ` User Input: ${values.content},
     Bio Tone: ${values.tone},
@@ -93,9 +97,12 @@ function UserInput() {
         values.temperature,
         values.model
       );
-      console.log(data);
+      // console.log(data);
+      setOutput(data);
+      setLoading(false);
     } catch (e) {
       console.log(e);
+      setLoading(false);
     }
   };
 
@@ -323,7 +330,8 @@ function UserInput() {
               )}
             />
           </fieldset>
-          <Button type="submit" className="w-full rounded">
+          <Button type="submit" className="w-full rounded" disabled={loading}>
+            {loading && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
             Generate
           </Button>
         </form>
