@@ -25,11 +25,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import MetaIcon from "../../icons/Meta";
-import MistralIcon from "../../icons/Mistral";
+import MetaIcon from "../icons/Meta";
+import MistralIcon from "../icons/Mistral";
 import { Slider } from "@/components/ui/slider";
-import { Tooltip, TooltipContent, TooltipTrigger } from "../tooltip";
+import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 import { Info } from "lucide-react";
+import { Textarea } from "@/components/ui/textarea";
 
 const formSchema = z.object({
   model: z.string().min(1, "Model is required!"),
@@ -87,7 +88,7 @@ function UserInput() {
           className="w-full items-start gap-6"
         >
           <fieldset className="flex flex-col gap-8 rounded-[8px] border p-4 bg-background/10 background-blur-s">
-            <legend>Settings</legend>
+            <legend className="ml-1 px-1 text-sm font-medium">Settings</legend>
 
             <FormField
               control={form.control}
@@ -200,7 +201,84 @@ function UserInput() {
             </div>
           </fieldset>
           <fieldset className="flex flex-col gap-8 rounded-[8px] border p-4 bg-background/10 background-blur-s">
-            <legend>User Input</legend>
+            <legend className="ml-1 px-1 text-sm font-medium">
+              User Input
+            </legend>
+            <FormField
+              control={form.control}
+              name="content"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="flex items-center justify-between pb-2">
+                    About Yourself
+                  </FormLabel>
+                  <FormControl>
+                    <Textarea
+                      {...field}
+                      placeholder="Add your old twitter bio or write few sentences about yourself"
+                      className="min-h-[10rem]"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="type"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="flex items-center justify-between pb-2">
+                    Type
+                  </FormLabel>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select type" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      <SelectItem value="personal">Personal</SelectItem>
+                      <SelectItem value="brand">Brand</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="tone"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="flex items-center justify-between pb-2">
+                    Tone
+                  </FormLabel>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select tone" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      <SelectItem value="professional">Professional</SelectItem>
+                      <SelectItem value="casual">Casual</SelectItem>
+                      <SelectItem value="sarcastic">Sarcastic</SelectItem>
+                      <SelectItem value="funny">Funny</SelectItem>
+                      <SelectItem value="passionate">Passionate</SelectItem>
+                      <SelectItem value="thoughful">Thoughtful</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
           </fieldset>
         </form>
       </Form>
