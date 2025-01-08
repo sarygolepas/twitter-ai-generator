@@ -32,6 +32,7 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 import { Info } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
 import { Switch } from "@/components/ui/switch";
+import { generateBio } from "@/app/action";
 
 const formSchema = z.object({
   model: z.string().min(1, "Model is required!"),
@@ -77,8 +78,25 @@ function UserInput() {
     },
   });
 
-  const onSubmit: SubmitHandler<FormValues> = (values) => {
+  const onSubmit: SubmitHandler<FormValues> = async (values) => {
     console.log(values);
+
+    const userInputValues = ` User Input: ${values.content},
+    Bio Tone: ${values.tone},
+    Bio Type: ${values.type},
+    Add Emojis: ${values.emojis},
+    `;
+
+    try {
+      const { data } = await generateBio(
+        userInputValues,
+        values.temperature,
+        values.model
+      );
+      console.log(data);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return (
@@ -122,7 +140,7 @@ function UserInput() {
                             </div>
                           </div>
                         </SelectItem>
-                        <SelectItem value="mixtral-8x7b-32768	">
+                        <SelectItem value="mixtral-8x7b-32768">
                           <div className="flex items-start gap-3 text-muted-foreground">
                             <MistralIcon className="size-5" />
                             <div>
