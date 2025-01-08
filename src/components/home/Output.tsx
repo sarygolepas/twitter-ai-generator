@@ -5,6 +5,7 @@ import { BorderBeam } from "@/components/ui/border-beam";
 import { useContext } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { BioContext } from "@/context/BioContext";
+import CopyLabel from "./CopyLabel";
 
 function Output() {
   const { output, loading } = useContext(BioContext);
@@ -30,9 +31,12 @@ function Output() {
             return (
               <li
                 key={index}
-                className="w-full text-base border border-primary/20 rounded-md p-4 relative bg-background"
+                className="w-full text-base border border-primary/20 rounded-md p-4 relative bg-background rounded-br-none"
               >
                 {data.bio}
+                <span className="absolute top-[99%] right-0">
+                  <CopyLabel text={data.bio} />
+                </span>
               </li>
             );
           })}
