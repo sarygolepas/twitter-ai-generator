@@ -26,12 +26,12 @@ function Output() {
       {loading ? (
         <Skeleton className="w-full h-full" />
       ) : (
-        <ul className="flex flex-col items-start justify-start space-y-12 py-12 md:px-4 xl:p-16">
+        <ul className="flex flex-col items-start justify-start space-y-12 py-12 px-4 xl:p-16">
           {output?.data.map((data, index) => {
             return (
               <li
                 key={index}
-                className="w-full border border-primary/20 rounded-md p-4 relative bg-background rounded-br-none md:text-sm lg:text-base"
+                className="w-full border border-primary/20 rounded-md p-4 relative bg-background rounded-br-none text-sm lg:text-base"
               >
                 {data.bio}
                 <span className="absolute top-[99%] right-0">
