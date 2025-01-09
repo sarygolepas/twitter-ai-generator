@@ -11,7 +11,7 @@ function Output() {
   const { output, loading } = useContext(BioContext);
 
   return (
-    <div className="flex h-[87.5%] mt-2 flex-col rounded-xl bg-muted/50 backdrop-blur-sm overflow-hidden border border-primary/5">
+    <div className="flex min-h-[87.5%] mt-2 flex-col rounded-xl bg-muted/50 backdrop-blur-sm overflow-hidden border border-primary/5">
       {loading && (
         <BorderBeam
           size={1200}

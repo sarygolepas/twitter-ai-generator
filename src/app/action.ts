@@ -34,7 +34,7 @@ Bio Requirements:
   - Highlight the most important information about the user.
   - Avoid using too many buzzwords or overdoing humor.
   - Ensure the bio length is between 120 and 160 characters.
-  - Provide at least four different bio options.
+  - Provide three different bio options. Do not generate less or do not generate more than three options
   - If 'Add Emojis' is true, include relevant emojis; if false, you must include any emojis.
   - The response must be in JSON format
 
