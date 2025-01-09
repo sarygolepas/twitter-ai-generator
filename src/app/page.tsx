@@ -10,7 +10,11 @@ export default function Home() {
     <main className="flex min-h-screen flex-col items-center pb-24 pt-16 md:px-8 xl:px-24 px-6">
       <div className="z-10 bg-white mb-10 mx-auto">
         <div className="group rounded-full border border-black/10 transition-all ease-in hover:cursor-pointer hover:bg-neutral-200 dark:border-white/5 dark:bg-neutral-900 dark:hover:bg-neutral-800 group">
-          <Link href="https://github.com" target="_blank" className="mb-4">
+          <Link
+            href="https://github.com/sarygolepas/twitter-ai-generator"
+            target="_blank"
+            className="mb-4"
+          >
             <AnimatedShinyText className="px-6 py-2 inline-flex items-center justify-center transition ease-out hover:text-neutral-600 hover:duration-300 hover:dark:text-neutral-400 rounded-full">
               <Star className="2-6 h-6 fill-yellow-300 text-yellow-400" />
               <div className="mx-2 h-4 w-[1px] bg-gray-300" />
