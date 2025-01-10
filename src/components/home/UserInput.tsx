@@ -35,6 +35,10 @@ import { Switch } from "@/components/ui/switch";
 import { generateBio } from "@/app/action";
 import { BioContext } from "@/context/BioContext";
 
+interface BioResponse {
+  data: { bio: string }[];
+}
+
 const formSchema = z.object({
   model: z.string().min(1, "Model is required!"),
   temperature: z
@@ -92,13 +96,13 @@ function UserInput() {
     `;
 
     try {
-      const { data } = await generateBio(
+      const { data } = (await generateBio(
         userInputValues,
         values.temperature,
         values.model
-      );
+      )) as BioResponse;
       // console.log(data);
-      setOutput(data);
+      setOutput(data as any);
       setLoading(false);
     } catch (e) {
       console.log(e);

@@ -2,12 +2,14 @@
 
 import { createContext, useState } from "react";
 
+interface BioResponse {
+  data: { bio: string }[];
+}
+
 interface BioContextTypes {
-  output: { data: { bio: string }[] };
+  output: BioResponse | null;
   loading: boolean;
-  setOutput: React.Dispatch<
-    React.SetStateAction<{ data: { bio: { bio: string }[] } }>
-  >;
+  setOutput: React.Dispatch<React.SetStateAction<{ data: { bio: string }[] }>>;
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
@@ -23,7 +25,6 @@ export const BioProvider = ({ children }: { children: React.ReactNode }) => {
     data: [],
   });
   const [loading, setLoading] = useState(false);
-  console.log("Output values", output);
 
   return (
     <BioContext.Provider value={{ output, setOutput, setLoading, loading }}>
