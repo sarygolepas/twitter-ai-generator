@@ -26,7 +26,7 @@ export default function Home() {
       </div>
       <div className="text-center z-10">
         <h1 className="font-extrabold md:text-7xl text-5xl lg:w-[90%] mx-auto mb-8">
-          Generate your twitter bio
+          Generate your X bio
         </h1>
         <p className="text-base md:text-lg text-gray-500 mx-auto mb-8">
           Answer a few questions, and we&apos;ll craft a unique bio that
